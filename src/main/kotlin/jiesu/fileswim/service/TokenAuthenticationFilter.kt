@@ -17,6 +17,9 @@ import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
 import javax.servlet.http.HttpServletRequest
 
+/**
+ * Filter to parse token from http requests.
+*/
 @Service
 class TokenAuthenticationFilter(val objectMapper: ObjectMapper, val publicKeyHolder: PublicKeyHolder) : GenericFilterBean() {
 
