@@ -5,21 +5,17 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.cloud.client.ServiceInstance
 import org.springframework.cloud.client.discovery.DiscoveryClient
-import org.springframework.scheduling.annotation.Scheduled
-import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import java.math.BigInteger
 import java.security.KeyFactory
 import java.security.spec.RSAPublicKeySpec
 
-@Service
-class PublicKeyService(val discoveryClient: DiscoveryClient, val publicKeyHolder: PublicKeyHolder) {
+class PublicKeyUpdater(val discoveryClient: DiscoveryClient, val publicKeyHolder: PublicKeyHolder) {
     companion object {
-        val log: Logger = LoggerFactory.getLogger(PublicKeyService::class.java)
+        val log: Logger = LoggerFactory.getLogger(PublicKeyUpdater::class.java)
     }
 
-    @Scheduled(fixedRate = 30000)
-    fun publicKey() {
+    fun refreshPublicKey() {
         val fileswims: List<ServiceInstance> = discoveryClient.getInstances("fileswim")
         if (fileswims.isEmpty()) {
             log.info("Couldn't get public key from Fileswim, Fileswim instance not found")

@@ -9,7 +9,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken
-import org.springframework.stereotype.Service
 import org.springframework.web.filter.GenericFilterBean
 import java.io.IOException
 import javax.servlet.FilterChain
@@ -20,7 +19,6 @@ import javax.servlet.http.HttpServletRequest
 /**
  * Filter to parse token from http requests.
 */
-@Service
 class TokenAuthenticationFilter(val objectMapper: ObjectMapper, val publicKeyHolder: PublicKeyHolder) : GenericFilterBean() {
 
     companion object {
