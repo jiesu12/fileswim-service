@@ -36,7 +36,7 @@ class TokenAuthenticationFilter(val objectMapper: ObjectMapper, val publicKeyHol
             val htmlLink: HtmlLink? = getTokenFromRequestParams(request)
             if (htmlLink != null) {
                 SecurityContextHolder.getContext().authentication =
-                        PreAuthenticatedAuthenticationToken(htmlLink, null, emptyList())
+                        PreAuthenticatedAuthenticationToken(htmlLink.user, null, emptyList())
             }
         }
         chain.doFilter(req, res)

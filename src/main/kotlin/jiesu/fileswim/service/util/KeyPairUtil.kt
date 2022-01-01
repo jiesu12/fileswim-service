@@ -7,9 +7,10 @@ import java.security.spec.PKCS8EncodedKeySpec
 import java.security.spec.X509EncodedKeySpec
 
 /**
- * Generate a key:
+ * Generate a key pair in pem format:
  * ```
  * openssl genrsa -out token_private_key.pem 3072
+ * openssl rsa -in token_private_key.pem -outform PEM -pubout -out token_public_key.pem
  * ```
  *
  * Then convert the key to DER files for java to read.
