@@ -4,7 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts
-import jiesu.fileswim.service.model.*
+import jiesu.fileswim.service.model.AuthException
+import jiesu.fileswim.service.model.PublicKeyHolder
+import jiesu.fileswim.service.model.TokenPurpose
+import jiesu.fileswim.service.model.User
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.security.core.context.SecurityContextHolder
@@ -33,10 +36,10 @@ class TokenAuthenticationFilter(val objectMapper: ObjectMapper, val publicKeyHol
             SecurityContextHolder.getContext().authentication =
                     PreAuthenticatedAuthenticationToken(user, null, emptyList())
         } else {
-            val htmlLink: HtmlLink? = getTokenFromRequestParams(request)
-            if (htmlLink != null) {
+            val userWithLink: User? = getTokenFromRequestParams(request)
+            if (userWithLink != null) {
                 SecurityContextHolder.getContext().authentication =
-                        PreAuthenticatedAuthenticationToken(htmlLink.user, null, emptyList())
+                        PreAuthenticatedAuthenticationToken(userWithLink, null, emptyList())
             }
         }
         chain.doFilter(req, res)
@@ -46,7 +49,7 @@ class TokenAuthenticationFilter(val objectMapper: ObjectMapper, val publicKeyHol
         val token = request.getHeader(TOKEN_NAME)
         if (token != null) {
             try {
-                return parseToken(token, TokenPurpose.LOGIN, User::class.java)
+                return parseToken(token, TokenPurpose.LOGIN)
             } catch (e: Exception) {
                 log.debug("Invalid token in header, reason - {}", e.toString())
             }
@@ -59,11 +62,11 @@ class TokenAuthenticationFilter(val objectMapper: ObjectMapper, val publicKeyHol
      * So we use a short life token for such purpose. This token can be provided as URL GET
      * parameter.
      */
-    private fun getTokenFromRequestParams(request: HttpServletRequest): HtmlLink? {
+    private fun getTokenFromRequestParams(request: HttpServletRequest): User? {
         val token = request.getParameter(TOKEN_NAME)
         if (token != null) {
             try {
-                return parseToken(token, TokenPurpose.HTML_LINK, HtmlLink::class.java)
+                return parseToken(token, TokenPurpose.HTML_LINK)
             } catch (e: Exception) {
                 log.debug("Invalid token in URL param, reason - {}", e.toString())
             }
@@ -71,7 +74,7 @@ class TokenAuthenticationFilter(val objectMapper: ObjectMapper, val publicKeyHol
         return null
     }
 
-    fun <T> parseToken(token: String, tokenPurpose: TokenPurpose, clazz: Class<T>): T {
+    fun parseToken(token: String, tokenPurpose: TokenPurpose): User {
         return try {
             val body: Claims = Jwts.parserBuilder()
                     .setSigningKey(publicKeyHolder.publicKey)
@@ -81,7 +84,7 @@ class TokenAuthenticationFilter(val objectMapper: ObjectMapper, val publicKeyHol
             if (tokenPurpose.name != body.audience) {
                 throw AuthException("Wrong type of token provided.")
             }
-            objectMapper.readValue(body.subject, clazz)
+            objectMapper.readValue(body.subject, User::class.java)
         } catch (e: ExpiredJwtException) {
             throw AuthException("Token has expired", e)
         } catch (e: IOException) {
