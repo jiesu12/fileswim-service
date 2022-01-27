@@ -1,8 +1,8 @@
-package jiesu.fileswim.service
+package jiesu.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.jsonwebtoken.Jwts
-import jiesu.fileswim.service.model.TokenPurpose
+import jiesu.service.model.TokenPurpose
 import java.security.KeyPair
 import java.util.*
 

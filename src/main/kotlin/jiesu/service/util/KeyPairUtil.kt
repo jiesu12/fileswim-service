@@ -1,4 +1,4 @@
-package jiesu.fileswim.service.util
+package jiesu.service.util
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider
 import org.bouncycastle.util.io.pem.PemReader
@@ -45,7 +45,8 @@ fun loadKeyPairFromDerFile(privateFile: String, publicFile: String): KeyPair {
 fun loadKeyPairFromPemFile(privateFile: String, publicFile: String): KeyPair =
     KeyPair(
         loadPublicKeyFromPemFile(File(publicFile)),
-        loadPrivateKeyFromPemFile(File(privateFile)))
+        loadPrivateKeyFromPemFile(File(privateFile))
+    )
 
 fun loadPublicKeyFromPemFile(file: File): RSAPublicKey {
     val factory = KeyFactory.getInstance("RSA")

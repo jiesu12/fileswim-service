@@ -1,4 +1,4 @@
-package jiesu.fileswim.service.model
+package jiesu.service.model
 
 class AuthException : RuntimeException {
     constructor(message: String) : super(message)

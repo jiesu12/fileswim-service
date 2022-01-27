@@ -1,4 +1,4 @@
-package jiesu.fileswim.service.util
+package jiesu.service.util
 
 import org.junit.jupiter.api.Test
 

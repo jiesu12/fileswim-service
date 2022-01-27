@@ -1,6 +1,6 @@
-package jiesu.fileswim.service
+package jiesu.service
 
-import jiesu.fileswim.service.model.PublicKeyHolder
+import jiesu.service.model.PublicKeyHolder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.cloud.client.ServiceInstance
@@ -22,7 +22,7 @@ class PublicKeyUpdater(val discoveryClient: DiscoveryClient, val publicKeyHolder
             return
         }
 
-        val pubKey: Array<String>? = RestTemplate().getForObject("${fileswims[0].uri}/fileswim/tokenPubKey", Array<String>::class.java)
+        val pubKey: Array<String>? = RestTemplate().getForObject("${fileswims[0].uri}/tokenPubKey", Array<String>::class.java)
         if (pubKey == null) {
             log.info("Couldn't get public key from Fileswim, failed calling Fileswim endpoint.")
         } else {

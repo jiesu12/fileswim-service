@@ -1,4 +1,4 @@
-package jiesu.fileswim.service.model
+package jiesu.service.model
 
 import java.security.PublicKey
 

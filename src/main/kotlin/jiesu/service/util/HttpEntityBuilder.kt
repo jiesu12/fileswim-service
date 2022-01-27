@@ -1,6 +1,6 @@
-package jiesu.fileswim.service.util
+package jiesu.service.util
 
-import jiesu.fileswim.service.TokenAuthenticationFilter.Companion.TOKEN_NAME
+import jiesu.service.TokenAuthenticationFilter.Companion.TOKEN_NAME
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType

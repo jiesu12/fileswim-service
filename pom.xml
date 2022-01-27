@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.github.jiesu12</groupId>
-    <artifactId>fileswim-service</artifactId>
-    <version>1.1.5</version>
-    <name>fileswim-service</name>
-    <description>Fileswim Service</description>
+    <artifactId>service-parent</artifactId>
+    <version>1.1.6-SNAPSHOT</version>
+    <name>service parent</name>
+    <description>Service Parent</description>
 
     <properties>
         <dokka.version>1.6.10</dokka.version>
@@ -169,20 +169,20 @@
                     </dokkaPlugins>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+            <!--    <groupId>org.apache.maven.plugins</groupId>-->
+            <!--    <artifactId>maven-gpg-plugin</artifactId>-->
+            <!--    <version>1.5</version>-->
+            <!--    <executions>-->
+            <!--        <execution>-->
+            <!--            <id>sign-artifacts</id>-->
+            <!--            <phase>verify</phase>-->
+            <!--            <goals>-->
+            <!--                <goal>sign</goal>-->
+            <!--            </goals>-->
+            <!--        </execution>-->
+            <!--    </executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 

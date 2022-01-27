@@ -1,13 +1,13 @@
-package jiesu.fileswim.service
+package jiesu.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts
-import jiesu.fileswim.service.model.AuthException
-import jiesu.fileswim.service.model.PublicKeyHolder
-import jiesu.fileswim.service.model.TokenPurpose
-import jiesu.fileswim.service.model.User
+import jiesu.service.model.AuthException
+import jiesu.service.model.PublicKeyHolder
+import jiesu.service.model.TokenPurpose
+import jiesu.service.model.User
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.security.core.context.SecurityContextHolder
