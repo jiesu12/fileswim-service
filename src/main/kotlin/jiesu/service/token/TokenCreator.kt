@@ -1,4 +1,4 @@
-package jiesu.service
+package jiesu.service.token
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.jsonwebtoken.Jwts

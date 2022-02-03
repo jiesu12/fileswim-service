@@ -1,6 +1,6 @@
 package jiesu.service.util
 
-import jiesu.service.TokenAuthenticationFilter.Companion.TOKEN_NAME
+import jiesu.service.token.TokenAuthenticationFilter.Companion.TOKEN_NAME
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType

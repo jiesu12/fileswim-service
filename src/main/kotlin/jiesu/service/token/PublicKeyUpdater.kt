@@ -1,4 +1,4 @@
-package jiesu.service
+package jiesu.service.token
 
 import jiesu.service.model.PublicKeyHolder
 import org.slf4j.Logger

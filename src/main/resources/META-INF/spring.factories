@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+jiesu.service.config.TokenConfig,\
+jiesu.service.config.TokenScheduleConfig
