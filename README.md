@@ -9,7 +9,7 @@ Add dependency:
 ```
 <dependency>
     <groupId>com.github.jiesu12</groupId>
-    <artifactId>fileswim-service</artifactId>
+    <artifactId>service-parent</artifactId>
     <version>1.1.0</version>
 </dependency>
 ```

@@ -3,22 +3,23 @@ package jiesu.service.util
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import java.io.File
 
 internal class KeyPairUtilKtTest {
 
     @Test
     fun loadKeyPairFromDerFileTest() {
         val keyPair = loadKeyPairFromDerFile(
-            this.javaClass::class.java.getResource("/token_private_key.der").file,
-            this.javaClass::class.java.getResource("/token_public_key.der").file)
+            File("src/test/resources/token_private_key.der").path,
+            File("src/test/resources/token_public_key.der").path)
         assertNotNull(keyPair)
     }
 
     @Test
     fun loadKeyPairFromPemFileTest() {
         val keyPair = loadKeyPairFromPemFile(
-            this.javaClass::class.java.getResource("/token_private_key.pem").file,
-            this.javaClass::class.java.getResource("/token_public_key.pem").file)
+            File("src/test/resources/token_private_key.pem").path,
+            File("src/test/resources/token_public_key.pem").path)
         assertNotNull(keyPair)
     }
 }
